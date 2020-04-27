@@ -1,0 +1,9 @@
+{
+    "_id" : ObjectId("5e9c1774ff2b849f2fce73f0"),
+    "key" : "botSettings",
+    "value" : {
+        "botToken" : "xoxb-781483155777-807208057655-FCvr5zS8jBOcHykB3GiWLlRO",
+        "botName" : "test-bot-prb",
+        "botUserId" : "DPR641SAK"
+    }
+}

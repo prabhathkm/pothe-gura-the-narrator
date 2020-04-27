@@ -1,0 +1,10 @@
+{
+    "_id" : ObjectId("5e9c1942ff2b849f2fce747f"),
+    "username" : "prabhaths",
+    "firstName" : "Prabhath",
+    "lastName" : "De Silva",
+    "slackUserId" : "UP5T3J7HN",
+    "email" : "prabhathkm@gmail.com",
+    "isAdmin" : true,
+    "failedSlackMessages" : 0
+}

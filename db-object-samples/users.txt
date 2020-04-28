@@ -3,8 +3,8 @@
     "username" : "prabhaths",
     "firstName" : "Prabhath",
     "lastName" : "De Silva",
-    "slackUserId" : "UP5T3J7HN",
-    "email" : "prabhathkm@gmail.com",
+    "slackUserId" : "XXX",
+    "email" : "XXX",
     "isAdmin" : true,
     "failedSlackMessages" : 0
 }

@@ -1,9 +1,0 @@
-{
-    "_id" : ObjectId("5e9c1774ff2b849f2fce73f0"),
-    "key" : "botSettings",
-    "value" : {
-        "botToken" : "XX",
-        "botName" : "test-bot-prb",
-        "botUserId" : "XX"
-    }
-}

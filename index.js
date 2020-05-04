@@ -45,6 +45,19 @@ dbConnector.getDbConnection(function dbConCb(dbConErr, db) {
         executeFunction: function(obj, next){
           if(obj){
 
+            // avoid msgs for dummy users
+            if(constants.TEST_MODE) {
+              _.each(obj.attachments, (a)=>{ 
+                console.log(`>> ${obj.username} > -- ${a.title}`);
+                console.log(`>> ${obj.username} > ----- ${a.text}`);
+              });
+              
+              if(obj.username!="prabhaths"){
+                setTimeout( next , msgQueueThrottle);
+                return;
+              }
+            }
+
             var params = {};
             if(obj.attachments){
               params.attachments = obj.attachments;

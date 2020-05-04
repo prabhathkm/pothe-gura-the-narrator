@@ -1,6 +1,9 @@
 var _        = require('lodash');
 
 var constants = {
+
+    TEST_MODE: true,
+
     MESSAGE_COLORS: {
         GREEN: "#51cc7a",
         RED: "#f44242",

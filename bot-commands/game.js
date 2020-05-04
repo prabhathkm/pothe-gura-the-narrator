@@ -341,8 +341,8 @@ Game = (function() {
 
   // extend game for a new round
   commandsHolder.addCommand({
-    regEx: /^\s*another\s*(round|game)$/i,
-    guide: 'another round',
+    regEx: /^\s*(another\s*(round|game))|\+1\s*$/i,
+    guide: 'another round / +1',
     sample: "another round",
     description: 'Another round',
     action: function(matchedCommand, user, cb){

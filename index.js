@@ -97,19 +97,19 @@ dbConnector.getDbConnection(function dbConCb(dbConErr, db) {
          */
         
         // schedule functions
-        // var hourlyJobFunc    = require('./schedule-jobs/hourly-check');
+        var hourlyJobFunc    = require('./schedule-jobs/hourly-check');
         
         // // start
-        // hourlyJobFunc.setParams({
-        //   db       : db,
-        //   timeZone : timeZone,
-        //   CONFIGS  : CONFIGS,
-        //   msgQueue : msgQueue,
-        // });
-        // var hourlyJob = new CronJob( "00 0-59/2 * * * *" , hourlyJobFunc.run, function () {},
-        //     true, 
-        //     timeZone 
-        // );
+        hourlyJobFunc.setParams({
+          db       : db,
+          timeZone : timeZone,
+          CONFIGS  : CONFIGS,
+          msgQueue : msgQueue,
+        });
+        var hourlyJob = new CronJob( "00 0-59/2 * * * *" , hourlyJobFunc.run, function () {},
+            true, 
+            timeZone 
+        );
 
         
         /**

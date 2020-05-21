@@ -50,14 +50,16 @@ var votes_1_night = [
       "slackUserId": "UP5T3J7HN1",
       "host": null,
       "vote": "prabhaths9",
-      "role": "MAFIA"
+      "role": "MAFIA",
+      "voteTime": "2020-05-03T12:57:22.981Z"
     },
     {
       "username": "prabhaths",
       "slackUserId": "UP5T3J7HN",
       "host": true,
       "vote": "prabhaths9",
-      "role": "MAFIA"
+      "role": "MAFIA",
+      "voteTime": "2020-05-03T12:57:23.981Z"
     },
     {
       "username": "prabhaths2",
@@ -65,7 +67,7 @@ var votes_1_night = [
       "host": null,
       "role": "DOCTOR",
       "vote": "prabhaths9",
-      "voteTime": "2020-05-03T12:57:25.797Z"
+      "voteTime": "2020-05-03T12:57:25.797Z",
     }
   ];
 
@@ -158,16 +160,23 @@ var votes_1_night = [
   ];
 
 
-  // test kill
-    // var livePlayers = votes_1_night;
-    // gamePlay.testSelf.players = _.keyBy(livePlayers, "username");
-    // gamePlay.testSelf.currentRound = 1;
-    // var deadGuy = gamePlay.testSelf.findWhosDead(livePlayers, "TEST");
-    // console.log(deadGuy);
+  
 
-    // test vote simulation
+    
     dbConnector.getDbConnection(function dbConCb(dbConErr, db) {
         gamePlay.testSelf.db=db;
+
+
+        // // test kill
+        // var livePlayers = votes_1_night;
+        // gamePlay.testSelf.players = _.keyBy(livePlayers, "username");
+        // gamePlay.testSelf.currentRound = 1;
+        // var deadGuy = gamePlay.testSelf.findWhosDead(livePlayers, "TEST");
+        // console.log(deadGuy);
+
+
+
+        // test vote simulation
         gamePlay.testSelf.userMsgQueue={
             addToQueue: (msg)=>{
                 console.log(`MSG: ${JSON.stringify(msg)}`);
@@ -181,6 +190,8 @@ var votes_1_night = [
             var deadGuy = gamePlay.testSelf.findWhosDead( _.map(gamePlay.testSelf.players) , "TEST");
             console.log(deadGuy);
         },5000)
+
+
     });
     
     

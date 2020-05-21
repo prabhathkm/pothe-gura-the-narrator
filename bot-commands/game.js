@@ -53,7 +53,8 @@ Game = (function() {
             var newGameCode = uuid.v4();
             dbUtils.setConfigParam(db, CONFIGS, "gameHosted", {
               code: newGameCode,
-              host: user.name
+              host: user.name,
+              lastActivityOn: new Date(),
             });
             
             //add host as a player

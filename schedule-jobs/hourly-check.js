@@ -21,9 +21,43 @@ OrderingStart = (function() {
     var db       = self.db;
     var timeZone = self.timeZone;
     var CONFIGS  = self.CONFIGS;
-    var userMsgQueue = self.userMsgQueue;
+    var msgQueue = self.msgQueue;
 
-    console.log("RUN");
+    // check for hosted game with no updates for 1hr and remove
+    var timeBefore1Hr = new Date();
+    timeBefore1Hr.setHours(timeBefore1Hr.getHours() - 1);
+
+    db.collection('configurations').findOne({
+      key: "gameHosted",
+      $and: [ { "value.lastActivityOn": { $ne : null } }, { "value.lastActivityOn": { $lte: timeBefore1Hr } } ] 
+    }, function(err, oldGame){
+      if(err){
+        logger.error(err);
+      }
+
+      if(oldGame){ // found a game to expire
+
+        // send a msg to host saying game has been removed
+        msgQueue.addToQueue({
+          username: oldGame.host,
+          attachments: [
+          {
+              "color": constants.MESSAGE_COLORS.GREEN,
+              "title": "GAME GOT EXPIRED !",
+              "text": `The game you hosted have just got expired due to lack of activity. ( Fair usage policy :stuck_out_tongue: )`,
+              "fields": [],
+              "footer": "Create a new game when you wants to play again.",
+              "footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png",
+          },
+          ]                           
+        });
+
+        // update DB
+        dbUtils.setConfigParam( db, CONFIGS, "gameHosted", {} );
+
+      }
+
+    });
 
 
   };

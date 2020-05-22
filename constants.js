@@ -18,7 +18,7 @@ var constants = {
         MAFIA: {
             code: "m",
             defaultRate: function(c){
-                return 1 + Math.floor( (c-3)/3);
+                return 1 + Math.floor( (c-4)/3);
             }
         },
         DOCTOR: {

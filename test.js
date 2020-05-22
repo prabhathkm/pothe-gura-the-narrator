@@ -3,8 +3,8 @@ var gamePlay   = require('./lib/game-play');
 var _ = require('lodash');
 var dbConnector = require('./lib/dbConnector');
 
-// var count = 6;
-// console.log(` Players: ${count} comb: ${JSON.stringify(gamePlay.getCombination(count))} `);
+var count = 6;
+console.log(` Players: ${count} comb: ${JSON.stringify(gamePlay.getCombination(count))} `);
 
 // var count = 10;
 // console.log(` Players: ${count} comb: ${JSON.stringify(gamePlay.getCombination(count))} `);
@@ -174,22 +174,31 @@ var votes_1_night = [
         // var deadGuy = gamePlay.testSelf.findWhosDead(livePlayers, "TEST");
         // console.log(deadGuy);
 
+        // test host combinations..
+        var livePlayers = votes_1_night;
+        gamePlay.testSelf.players = _.keyBy(livePlayers, "username");
+        gamePlay.testSelf.currentRound = 1;
+        gamePlay.hostMessages("m-3", null, null, (msg)=>{
+          console.log(msg);
+        });
+        console.log(gamePlay.testSelf.combinations);
+
 
 
         // test vote simulation
-        gamePlay.testSelf.userMsgQueue={
-            addToQueue: (msg)=>{
-                console.log(`MSG: ${JSON.stringify(msg)}`);
-            }
-        };
-        gamePlay.testSelf.players = _.keyBy(no_votes, "username");
-        gamePlay.testSelf.currentRound = 1;
-        gamePlay.testSelf.gameInProgress = true;
-        gamePlay.testSelf.simulateVotes();
-        setTimeout(()=>{
-            var deadGuy = gamePlay.testSelf.findWhosDead( _.map(gamePlay.testSelf.players) , "TEST");
-            console.log(deadGuy);
-        },5000)
+        // gamePlay.testSelf.userMsgQueue={
+        //     addToQueue: (msg)=>{
+        //         console.log(`MSG: ${JSON.stringify(msg)}`);
+        //     }
+        // };
+        // gamePlay.testSelf.players = _.keyBy(no_votes, "username");
+        // gamePlay.testSelf.currentRound = 1;
+        // gamePlay.testSelf.gameInProgress = true;
+        // gamePlay.testSelf.simulateVotes();
+        // setTimeout(()=>{
+        //     var deadGuy = gamePlay.testSelf.findWhosDead( _.map(gamePlay.testSelf.players) , "TEST");
+        //     console.log(deadGuy);
+        // },5000)
 
 
     });

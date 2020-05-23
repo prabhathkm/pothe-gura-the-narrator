@@ -141,6 +141,52 @@ Game = (function() {
   });
 
 
+  // host - players in a game
+  commandsHolder.addCommand({
+    regEx: /^\s*list\s*players$/i,
+    guide: 'list players',
+    sample: "list players",
+    description: 'List players in the game',
+    action: function(matchedCommand, user, cb){
+
+      var commandExtract = matchedCommand.match(/^\s*list\s*players\s*$/i);
+
+      if(commandExtract){
+
+        var params = commandsHolder.getParams();
+        var db = params.db;
+
+        self.getHostedGame(db, (gameHosted)=>{
+
+          if(!gameHosted.code || gameHosted.host!=user.name){
+            cb("There is no active game hosted by you.");
+          } else {
+
+            // get players
+            db.collection('gamePlayers').find({
+              gameCode: gameHosted.code,
+            }).toArray(function(err, players){
+
+              var playersArr = [];
+              _.each(players, function(player){
+                playersArr.push(`<@${player.slackUserId}>`);
+              });
+
+              cb(`Players in the game: (${_.size(players)})\n ${playersArr.join("\n")}`);
+
+            });
+
+          }
+        });
+
+      } else {
+        cb(constants.INVALID_COMMAND_STRING);
+      }
+
+    }
+  });
+
+
   // join a game
   commandsHolder.addCommand({
     regEx: /^\s*join\s*game$/i,
